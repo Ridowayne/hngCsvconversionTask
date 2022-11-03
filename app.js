@@ -3,9 +3,10 @@ const json2csv = require("json2csv").parse;
 const crypto = require("crypto");
 
 const fs = require("fs");
+const filePath = process.argv[2] || "Naming - Team Engine.csv";
 
 csvtojson()
-  .fromFile("Naming - Team Engine.csv")
+  .fromFile(filePath)
   .then((sourcefile) => {
     for (let i = 0; i < sourcefile.length; i++) {
       const hash = crypto
@@ -22,5 +23,6 @@ csvtojson()
     const csv = json2csv(sourcefile, {
       fields: ["Series Number", "FILE NAME", "UUID", "Description", "HASH"],
     });
-    fs.writeFileSync("./finalnft.output.csv", csv);
+    fs.writeFileSync(`${filePath.split(".")[0]}.output.csv`, csv);
+    console.log(`output generated successfully`);
   });
