@@ -22,5 +22,5 @@ csvtojson()
     const csv = json2csv(sourcefile, {
       fields: ["Series Number", "FILE NAME", "UUID", "Description", "HASH"],
     });
-    fs.writeFileSync("./finalnft.csv", csv);
+    fs.writeFileSync("./finalnft.output.csv", csv);
   });
